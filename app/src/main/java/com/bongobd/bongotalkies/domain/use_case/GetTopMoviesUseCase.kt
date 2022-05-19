@@ -20,7 +20,7 @@ class GetTopMoviesUseCase @Inject constructor(
             emit(Resource.Loading())
 
             val response = repository.getTopMovies()
-            val list = if (response.movieList.isNullOrEmpty()) emptyList() else response.movieList.map {
+            val list = if (response.results.isNullOrEmpty()) emptyList<Movie>() else response.results.map {
                 it.toMovie()
             }
             emit(Resource.Success(data = list))
