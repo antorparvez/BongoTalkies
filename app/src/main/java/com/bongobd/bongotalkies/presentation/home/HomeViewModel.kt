@@ -16,22 +16,22 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val topMovieUseCase: GetTopMoviesUseCase
 ) : ViewModel(){
-    private val _topMovieList = MutableStateFlow(MealSearchState())
-    val topMovieList : StateFlow<MealSearchState> = _topMovieList
+    private val _topMovieList = MutableStateFlow(MovieState())
+    val topMovieList : StateFlow<MovieState> = _topMovieList
 
-    fun getMealSearchList(){
+    fun getTopMovieList(){
         topMovieUseCase().onEach {
             when(it){
                 is Resource.Loading->{
-                    _topMovieList.value = MealSearchState(isLoading = false)
+                    _topMovieList.value = MovieState(isLoading = false)
                 }
 
                 is Resource.Error->{
-                    _topMovieList.value = MealSearchState(error = it.message.toString())
+                    _topMovieList.value = MovieState(error = it.message.toString())
 
                 }
                 is Resource.Success->{
-                    _topMovieList.value= MealSearchState(list = it.data)
+                    _topMovieList.value= MovieState(list = it.data)
 
                 }
             }
@@ -39,7 +39,7 @@ class HomeViewModel @Inject constructor(
     }
 }
 
-data class MealSearchState(
+data class MovieState(
     val list : List<Movie>?=null,
     val error:String ="",
     val isLoading:Boolean=false
