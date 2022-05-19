@@ -1,4 +1,4 @@
-package com.prothomtech.bongotalkies
+package com.bongobd.bongotalkies
 
 import org.junit.Test
 
