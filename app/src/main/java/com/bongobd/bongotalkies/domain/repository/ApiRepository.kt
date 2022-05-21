@@ -3,7 +3,7 @@ import com.bongobd.bongotalkies.data.remote.dto.MovieDetailsDTO
 import com.bongobd.bongotalkies.data.remote.dto.MoviesDTO
 
 interface ApiRepository {
-    suspend fun getTopMovies(): MoviesDTO
-    suspend fun getMovieDetails(): MovieDetailsDTO
+    suspend fun getTopMovies(page:Int): MoviesDTO
+    suspend fun getMovieDetails(movieId:Int): MovieDetailsDTO
 
 }

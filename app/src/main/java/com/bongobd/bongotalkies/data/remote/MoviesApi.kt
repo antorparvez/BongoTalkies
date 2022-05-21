@@ -3,11 +3,21 @@ package com.bongobd.bongotalkies.data.remote
 import com.bongobd.bongotalkies.data.remote.dto.MovieDetailsDTO
 import com.bongobd.bongotalkies.data.remote.dto.MoviesDTO
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MoviesApi {
-    @GET("top_rated?api_key=c37d3b40004717511adb2c1fbb15eda4&language=en-US&p%20age=1")
-    suspend fun getTopMovies(): MoviesDTO
+    @GET("movie/top_rated")
+    suspend fun getTopMovies(
+        @Query("api_key") api_key:String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): MoviesDTO
 
-    @GET("122?api_key=c37d3b40004717511adb2c1fbb15eda4&language=en-US")
-    suspend fun getMovieDetails():MovieDetailsDTO
+    @GET("movie/{id}")
+    suspend fun getMovieDetails(
+        @Path("id") id : Int,
+        @Query("api_key") api_key:String,
+        @Query("language") language: String,
+    ):MovieDetailsDTO
 }

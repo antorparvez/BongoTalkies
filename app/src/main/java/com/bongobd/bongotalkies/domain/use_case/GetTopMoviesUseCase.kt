@@ -14,12 +14,12 @@ import javax.inject.Inject
 class GetTopMoviesUseCase @Inject constructor(
     private val repository: ApiRepository
 ) {
-    operator fun invoke(): Flow<Resource<List<Movie>>> = flow {
+    operator fun invoke(page:Int): Flow<Resource<List<Movie>>> = flow {
 
         try {
             emit(Resource.Loading())
 
-            val response = repository.getTopMovies()
+            val response = repository.getTopMovies(page = page)
             val list = if (response.results.isNullOrEmpty()) emptyList<Movie>() else response.results.map {
                 it.toMovie()
             }

@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor(
     private val _topMovieList = MutableStateFlow(MovieState())
     val topMovieList : StateFlow<MovieState> = _topMovieList
 
-    fun getTopMovieList(){
-        topMovieUseCase().onEach {
+    fun getTopMovieList(page:Int){
+        topMovieUseCase(page).onEach {
             when(it){
                 is Resource.Loading->{
                     _topMovieList.value = MovieState(isLoading = false)

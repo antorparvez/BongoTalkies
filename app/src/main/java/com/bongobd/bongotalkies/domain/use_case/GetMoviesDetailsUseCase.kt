@@ -17,12 +17,12 @@ import javax.inject.Inject
 class GetMoviesDetailsUseCase @Inject constructor(
     private val repository: ApiRepository
 ) {
-    operator fun invoke(): Flow<Resource<MovieDetails>> = flow {
+    operator fun invoke(id:Int): Flow<Resource<MovieDetails>> = flow {
 
         try {
             emit(Resource.Loading())
 
-            val response = repository.getMovieDetails().toMovieDetails()
+            val response = repository.getMovieDetails(id).toMovieDetails()
             Log.d("TAG", "invoke: $response")
            // val data = response.toMovieDetails()
 

@@ -19,8 +19,8 @@ class MovieDetailsViewModel  @Inject constructor(
     private val _movieDetails = MutableStateFlow(MovieDetailsState())
     val movieDetails : StateFlow<MovieDetailsState> = _movieDetails
 
-    fun getMovieDetails(){
-        movieDetailsUseCase().onEach {
+    fun getMovieDetails(id:Int){
+        movieDetailsUseCase(id = id).onEach {
             when(it){
                 is Resource.Loading->{
                     _movieDetails.value = MovieDetailsState(isLoading = false)
