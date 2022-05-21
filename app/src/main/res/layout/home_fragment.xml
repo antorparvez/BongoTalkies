@@ -10,6 +10,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
+        android:id="@+id/nestedSV"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +20,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:title="@string/app_name"
+                android:background="@color/red"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:id="@+id/homeToolbar"/>
+
             <include
+                app:layout_constraintTop_toBottomOf="@id/homeToolbar"
                 android:id="@+id/homePromoView"
                 layout="@layout/home_promo_view" />
 

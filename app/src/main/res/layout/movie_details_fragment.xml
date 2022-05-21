@@ -75,7 +75,7 @@
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:weightSum="15"
-
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
@@ -89,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="5"
+            android:textStyle="bold"
             android:autoSizeTextType="uniform"
             android:textSize="20sp" />
 
@@ -106,12 +107,12 @@
 
         <TextView
             android:id="@+id/date_status"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tagline"
-            android:layout_weight="5"
+            android:fontFamily="@font/roboto"
             android:autoSizeTextType="uniform"
-            android:textSize="15sp"
+            android:textSize="14sp"
 
             />
 
