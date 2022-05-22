@@ -24,6 +24,7 @@ import kotlin.math.abs
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+    var page: Int = 1
     private lateinit var binding: HomeFragmentBinding
     private var movieList = arrayListOf<Movie>()
     private var movieSliderList = arrayListOf<Movie>()
@@ -42,8 +43,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    var page: Int = 1
-    var is_loading = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,6 +57,7 @@ class HomeFragment : Fragment() {
         viewModel.getTopMovieList(page)
         initObserver()
         initViews()
+        setupHomePageImageSlider()
 
     }
 
@@ -73,25 +73,22 @@ class HomeFragment : Fragment() {
 
         binding.trendingRV.isNestedScrollingEnabled = false
         binding.nestedSV.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            // on scroll change we are checking when users scroll as bottom.
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                // in this method we are incrementing page number,
-                // making progress bar visible and calling get data method.
                 page++
-                binding.progressBar.setVisibility(View.VISIBLE)
+                binding.progressBar.visibility = View.VISIBLE
                 viewModel.getTopMovieList(page)
             }
         })
 
+    }
 
+    private fun setupHomePageImageSlider() {
 
-
-        binding.homePromoView.sliderViewPager.adapter = sliderAdapter
-
-        binding.homePromoView.sliderViewPager.clipToPadding = false
-        binding.homePromoView.sliderViewPager.clipChildren = false
-        binding.homePromoView.sliderViewPager.offscreenPageLimit = 3
-        binding.homePromoView.sliderViewPager.getChildAt(0).overScrollMode =
+        binding.sliderViewPager.adapter = sliderAdapter
+        binding.sliderViewPager.clipToPadding = false
+        binding.sliderViewPager.clipChildren = false
+        binding.sliderViewPager.offscreenPageLimit = 3
+        binding.sliderViewPager.getChildAt(0).overScrollMode =
             RecyclerView.OVER_SCROLL_NEVER
 
         val compositePageTransformer = CompositePageTransformer()
@@ -100,11 +97,11 @@ class HomeFragment : Fragment() {
             val r = 1 - abs(position)
             page.scaleY = 0.90f + r * 0.04f
         }
-        binding.homePromoView.sliderViewPager.setPageTransformer(compositePageTransformer)
+        binding.sliderViewPager.setPageTransformer(compositePageTransformer)
         var currentPage = 0
         val handler = Handler()
         val update = Runnable {
-            binding.homePromoView.sliderViewPager.setCurrentItem(currentPage, true);
+            binding.sliderViewPager.setCurrentItem(currentPage, true);
             currentPage++
         }
         val timer = Timer()// This will create a new Thread
@@ -113,10 +110,7 @@ class HomeFragment : Fragment() {
                 handler.post(update)
             }
         }, 500, 3000)
-
-
     }
-
 
     private fun initObserver() {
         ///observe Movie List form viewModel
@@ -141,6 +135,7 @@ class HomeFragment : Fragment() {
                     }
                     sliderAdapter.notifyDataSetChanged()
                     movieAdapter.notifyDataSetChanged()
+                    binding.mainProgress.visibility = View.GONE
                     binding.progressBar.visibility = View.GONE
                 }
             }
@@ -155,6 +150,8 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        movieList.clear()
+        viewModel.getTopMovieList(1)
         movieAdapter.updateAdapter(movieList)
 
     }

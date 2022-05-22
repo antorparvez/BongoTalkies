@@ -53,6 +53,7 @@ class MovieDetailsFragment : Fragment() {
 
                     Log.d("TAG", "onViewCreated: Success $data")
                     setMovieData(data)
+                    binding.mainProgress.visibility = View.GONE
                 }
             }
         }
@@ -79,7 +80,9 @@ class MovieDetailsFragment : Fragment() {
         binding.releaseDate.text= "Popularity ${movieDetails.popularity}"
         binding.ageRate.text= "Languages ${movieDetails.spoken_languages[0].english_name}"
         binding.runTime.text= convertMinutesTimeToHHMMString(movieDetails.runtime)+" hr"
-        binding.movieDescription.text=movieDetails.overview
+        binding.movieDescription.text= "Storyline:\n"+movieDetails.overview
+
+        binding.gridView.adapter= movieDetails.genres?.let { GenresAdapter(it) }
 
         binding.playBtn.setOnClickListener {
             Toast.makeText(requireContext(), "Feature under development", Toast.LENGTH_SHORT).show()

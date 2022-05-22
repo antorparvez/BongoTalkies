@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bongobd.bongotalkies">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BongoTalkiesApp"
         android:allowBackup="true"
@@ -12,14 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BongoTalkies">
         <activity
-            android:name="com.bongobd.bongotalkies.presentation.MainActivity"
-            android:exported="true">
+            android:name=".presentation.splash.SplashActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

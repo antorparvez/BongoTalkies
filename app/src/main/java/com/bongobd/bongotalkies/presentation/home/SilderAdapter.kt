@@ -3,6 +3,7 @@ package com.bongobd.bongotalkies.presentation.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bongobd.bongotalkies.R
@@ -17,7 +18,8 @@ class SliderImageAdapter(
     val onProductDetailsItemClick: (shopDetails: Movie) -> Unit) :
     RecyclerView.Adapter<SliderImageAdapter.SliderViewHolder>() {
     inner class SliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       val  sliderImage: KenBurnsView = itemView.findViewById(R.id.kbvLocation)
+      // val  sliderImage: KenBurnsView = itemView.findViewById(R.id.kbvLocation)
+       val  sliderImage: ImageView = itemView.findViewById(R.id.kbvImage)
        val  infoBtn: LinearLayout = itemView.findViewById(R.id.infoBtn)
     }
 

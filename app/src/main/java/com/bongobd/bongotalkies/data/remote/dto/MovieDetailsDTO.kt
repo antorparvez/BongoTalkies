@@ -7,7 +7,7 @@ data class MovieDetailsDTO(
     val backdrop_path: String,
     val belongs_to_collection: BelongsToCollection,
     val budget: Int,
-    val genres: List<Genre>,
+    val genres: List<Genre>?= arrayListOf(),
     val homepage: String,
     val id: Int,
     val imdb_id: String,
@@ -33,6 +33,7 @@ data class MovieDetailsDTO(
 fun MovieDetailsDTO.toMovieDetails() : MovieDetails{
     return MovieDetails(
         backdrop_path=backdrop_path,
+        genres=genres,
         id=id,
         overview=overview,
         popularity = popularity,
