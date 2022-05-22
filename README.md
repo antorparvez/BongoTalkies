@@ -8,10 +8,19 @@ height=300 width=160>](https://github.com/antorparvez/BongoTalkies/blob/master/s
 [<img src="https://github.com/antorparvez/BongoTalkies/blob/master/screenshots/bongbd.gif" 
 height=300 width=160>](https://github.com/antorparvez/BongoTalkies/blob/master/screenshots/bongbd.gif)
 
-## I have used this following architecture components:
+## I have used this following technologies in this project:
+* Programming Language Kotlin
 * Clean Architecture
 * MVVM Design Pattern
-
+* Retrofit for network call
+* Dependency injection with Hilt
+* Navigation Components
+* Coroutine 
+* Pagination
+* Recyclerview (GridLayout)
+* Viewpager2
+* Glide Image Loader Library
+* Andorid Views ( Constraintlayout, LinearLayout , GridsView, Progressbar)
 
 
 
